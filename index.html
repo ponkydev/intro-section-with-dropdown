@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Intro section with dropdown navigation</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --almost-white: hsl(0, 0%, 98%);
+      --medium-gray: hsl(0, 0%, 41%);
+      --almost-black: hsl(0, 0%, 8%);
+    }
+
+    body {
+      font-family: "Epilogue", sans-serif;
+      min-height: 100vh;
+      background-color: var(--almost-white);
+    }
+    
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 3rem;
+    }
+
+    .nav {
+      display: flex;
+      min-width: 33rem;
+      justify-content: space-between;
+    }
+
+    .nav > ul {
+      display: flex;
+      min-width: 24rem;
+      justify-content: space-between;
+      padding-top: .2rem;
+    }
+
+    .nav-items {
+      list-style: none;
+    }
+
+    .nav-items > a {
+      text-decoration: none;
+      color: var(--medium-gray);
+      font-weight: 500;
+      transition: color .3s;
+    }
+
+    .nav-items > a:hover, .login:hover {
+      color: #000;
+    }
+
+    #features {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    #company {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .arrow-down {
+      rotate: 50%;
+    }
+
+    .login-register {
+      position: relative;
+      bottom: .25rem;
+    }
+
+    .login {
+      text-decoration: none;
+      color: var(--medium-gray);
+      margin-right: 2.5rem;
+      font-weight: 500;
+    }
+
+    .register {
+      text-decoration: none;
+      color: var(--medium-gray);
+      padding: .8rem 1.5rem;
+      border: 1px solid var(--medium-gray);
+      border-radius: .8rem;
+      font-weight: 500;
+      transition: all .3s;
+    }
+
+    .register:hover {
+      color: #000;
+      border: 1px solid #000;
+    }
+
+    .features-items {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      background-color: #fff;
+      padding: 0 2rem;
+      height: 0;
+      overflow: hidden;
+      box-shadow: .1px .1px 10px var(--almost-black);
+      border-radius: .5rem;
+      z-index: 10;
+      position: absolute;
+      top: 1.9rem;
+      transition: height .5s;
+    }
+
+    .features-items > li {
+      list-style: none;
+    }
+
+    .features-items > li > a {
+      text-decoration: none;
+      color: var(--medium-gray);
+      display: flex;
+      align-items: center;
+    }
+
+    .features-items > li > a:hover {
+      color: #000;
+    }
+
+    .features-items > li > a > img {
+      margin-right: .8rem;
+    }
+
+    .open-features-menu {
+      height: 11rem;
+    }
+
+    .company-items {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      background-color: #fff;
+      padding: 0 1rem;
+      min-width: 7rem;
+      height: 0;
+      overflow: hidden;
+      box-shadow: .1px .1px 10px var(--almost-black);
+      border-radius: .5rem;
+      z-index: 10;
+      position: absolute;
+      top: 1.9rem;
+      transition: height .5s;
+    }
+
+    .company-items > li {
+      list-style: none;
+    }
+
+    .company-items > li > a {
+      text-decoration: none;
+      color: var(--medium-gray);
+    }
+
+    .company-items > li > a:hover {
+      color: #000;
+    } 
+
+    .open-company-menu {
+      height: 8rem;
+    }
+
+    /* MAIN */
+    .main-sect {
+      width: 80%;
+      height: 43rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 36rem 1fr;
+      column-gap: 8rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      grid-column: 1;
+      grid-row: 1;
+      margin-top: 5rem;
+    }
+
+    .title {
+      font-size: 4.8rem;
+      font-weight: 700;
+    }
+
+    .paragraph {
+      color: var(--almost-black);
+      font-size: 1.2rem;
+      padding-right: 2rem;
+      line-height: 1.6rem;
+    }
+
+    .btn {
+      padding: 1rem 0;
+      background-color: #000;
+      color: #fff;
+      border-radius: 1rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      cursor: pointer;
+      width: 12rem;
+      transition: all .3s;
+    }
+
+    .btn:hover {
+      background-color: var(--almost-white);
+      color: #000;
+    }
+
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      margin-top: 4rem;
+      justify-content: space-between;
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .hero {
+      max-height: 42rem;
+      grid-column: 2;
+      grid-row: span 2;
+    }
+
+    /* .attribution {display: none; font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); } */
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="company-link">
+        <img src="images/logo.svg" alt="Company Logo" class="company-logo">
+      </a>
+      <ul>
+        <li onclick="openFeaturesMenu()" id="features" class="nav-items"><a href="#">Features <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
+          <ul class="features-items invisible">
+            <li><a href="#"><img src="images/icon-todo.svg" alt="todo icon">Todo List</a></li>
+            <li><a href="#"><img src="images/icon-calendar.svg" alt="calendar icon">Calendar</a></li>
+            <li><a href="#"><img src="images/icon-reminders.svg" alt="reminder icon">Reminder</a></li>
+            <li><a href="#"><img src="images/icon-planning.svg" alt="planing icon">Planing</a></li>
+          </ul>
+        </li>
+        <li onclick="openCompanyMenu()" id="company" class="nav-items"><a href="#">Company <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
+          <ul class="company-items">
+            <li><a href="#">History</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </li>
+        <li class="nav-items"><a href="#">Careers</a></li>
+        <li class="nav-items"><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <div class="login-register">
+      <a class="login" href="#">Login</a>
+      <a class="register" href="#">Register</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main-sect">
+    <div class="info">
+      <h1 class="title">Make remote work</h1>
+      <p class="paragraph">Get your team in sync, no matter your location. Streamline processes, 
+        create team rituals, and watch productivity soar.</p>
+      <button class="btn">Learn more</button>
+    </div>
+    <div class="brand-logos">
+      <img src="images/client-databiz.svg" alt="Databiz logo" class="brand-logo">
+      <img src="images/client-audiophile.svg" alt="audiophile logo" class="brand-logo">
+      <img src="images/client-meet.svg" alt="meet logo" class="brand-logo">
+      <img src="images/client-maker.svg" alt="maker logo" class="brand-logo">
+    </div>
+    <img class="hero" src="images/image-hero-desktop.png" alt="guy holding a laptop">
+  </main>
+  <!-- 
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+
+  <script>
+    const features = document.getElementById("features");
+    const featuresItems = document.querySelector(".features-items");
+    const company = document.getElementById("company");
+    const companyItems = document.querySelector(".company-items")
+
+    function openFeaturesMenu() {
+      featuresItems.classList.toggle("open-features-menu");
+    }
+
+    function openCompanyMenu() {
+      companyItems.classList.toggle("open-company-menu");
+    }
+  </script>
+</body>
+</html>
