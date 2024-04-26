@@ -44,6 +44,10 @@
       justify-content: space-between;
     }
 
+    .ham-menu-icon {
+      display: none;
+    }
+
     .nav > ul {
       display: flex;
       width: 24rem;
@@ -265,11 +269,31 @@
       body {
         min-height: 100svh;
       }
+
       .header {
         padding: 1.5rem 1rem;
       }
-      .nav ul, .login-register {
+
+      .ham-menu-btn {
+        border: none;
+        background-color: var(--almost-white);
+        height: 1.2rem;
+        width: 1.5rem;
+      }
+
+      .ham-menu-icon {
         display: none;
+        max-width: 100%;
+        height: 100%;
+      }
+
+      .nav ul, .login-register {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #features {
+        align-items: flex-start;
       }
 
       .main-sect {
@@ -333,6 +357,7 @@
       <a href="#" class="company-link">
         <img src="images/logo.svg" alt="Company Logo" class="company-logo">
       </a>
+      <button class="ham-menu-btn"><img src="images/icon-menu.svg" alt="menu icon" class="ham-menu-icon"></button>
       <ul>
         <li id="features" class="nav-items"><a href="#">Features <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
           <ul class="features-items invisible">
