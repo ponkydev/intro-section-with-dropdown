@@ -34,17 +34,21 @@
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 2rem 3rem;
     }
 
-    .nav {
+    .ham-menu {
+      width: 75rem;
       display: flex;
-      width: 33rem;
       justify-content: space-between;
+      align-items: flex-start;
     }
 
     .ham-menu-icon {
+      display: none;
+    }
+
+    .close-ham-menu-btn {
       display: none;
     }
 
@@ -86,11 +90,6 @@
 
     .arrow-down {
       rotate: 50%;
-    }
-
-    .login-register {
-      position: relative;
-      bottom: .25rem;
     }
 
     .login {
@@ -265,13 +264,28 @@
     .attribution a { color: hsl(228, 45%, 44%); } */
 
     /* Responsive design for Mobiles under 450px */
+
     @media screen and (max-width: 450px) {
       body {
         min-height: 100svh;
+        overflow: hidden;
       }
 
       .header {
         padding: 1.5rem 1rem;
+      }
+
+      .ham-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 70%;
+        z-index: 10;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: #fff;
+        padding: 5rem 2rem;
       }
 
       .ham-menu-btn {
@@ -287,9 +301,56 @@
         height: 100%;
       }
 
+      .close-ham-menu-btn {
+        display: block;
+        position: absolute;
+        top: 1.4rem;
+        right: 2rem;
+        border: none;
+        background-color: #fff;
+        height: 1.5rem;
+      }
+
+      .nav {
+        display: flex;
+        height: 10rem;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+      }
+      
       .nav ul, .login-register {
         display: flex;
         flex-direction: column;
+      }
+
+      .nav > ul {
+        width: auto;
+      }
+
+      .nav-items > a {
+        font-size: 1.2rem;
+      }
+
+      .arrow-down {
+        height: .5rem;
+        margin-left: .3rem;
+      }
+
+      .login-register {
+        width: 100%;
+        height: 6rem;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.2rem;
+      }
+
+      .login {
+        margin: 0;
+      }
+
+      .register {
+        width: 100%;
+        text-align: center;
       }
 
       #features {
@@ -353,34 +414,37 @@
 
   <!-- Header -->
   <header class="header">
-    <nav class="nav">
-      <a href="#" class="company-link">
-        <img src="images/logo.svg" alt="Company Logo" class="company-logo">
-      </a>
-      <button class="ham-menu-btn"><img src="images/icon-menu.svg" alt="menu icon" class="ham-menu-icon"></button>
-      <ul>
-        <li id="features" class="nav-items"><a href="#">Features <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
-          <ul class="features-items invisible">
-            <li><a href="#"><img src="images/icon-todo.svg" alt="todo icon">Todo List</a></li>
-            <li><a href="#"><img src="images/icon-calendar.svg" alt="calendar icon">Calendar</a></li>
-            <li><a href="#"><img src="images/icon-reminders.svg" alt="reminder icon">Reminder</a></li>
-            <li><a href="#"><img src="images/icon-planning.svg" alt="planing icon">Planing</a></li>
-          </ul>
-        </li>
-        <li onclick="openCompanyMenu()" id="company" class="nav-items"><a href="#">Company <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
-          <ul class="company-items">
-            <li><a href="#">History</a></li>
-            <li><a href="#">Our Team</a></li>
-            <li><a href="#">Blog</a></li>
-          </ul>
-        </li>
-        <li class="nav-items"><a href="#">Careers</a></li>
-        <li class="nav-items"><a href="#">About</a></li>
-      </ul>
-    </nav>
-    <div class="login-register">
-      <a class="login" href="#">Login</a>
-      <a class="register" href="#">Register</a>
+    <a href="#" class="company-link">
+      <img src="images/logo.svg" alt="Company Logo" class="company-logo">
+    </a>
+    <button class="ham-menu-btn"><img src="images/icon-menu.svg" alt="menu icon" class="ham-menu-icon"></button>
+    <div class="ham-menu">
+      <button class="close-ham-menu-btn"><img src="images/icon-close-menu.svg" alt="icon to close ham menu"></button>
+      <nav class="nav">
+        <ul>
+          <li id="features" class="nav-items"><a href="#">Features <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
+            <ul class="features-items invisible">
+              <li><a href="#"><img src="images/icon-todo.svg" alt="todo icon">Todo List</a></li>
+              <li><a href="#"><img src="images/icon-calendar.svg" alt="calendar icon">Calendar</a></li>
+              <li><a href="#"><img src="images/icon-reminders.svg" alt="reminder icon">Reminder</a></li>
+              <li><a href="#"><img src="images/icon-planning.svg" alt="planing icon">Planing</a></li>
+            </ul>
+          </li>
+          <li id="company" class="nav-items"><a href="#">Company <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
+            <ul class="company-items">
+              <li><a href="#">History</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </li>
+          <li class="nav-items"><a href="#">Careers</a></li>
+          <li class="nav-items"><a href="#">About</a></li>
+        </ul>
+      </nav>
+      <div class="login-register">
+        <a class="login" href="#">Login</a>
+        <a class="register" href="#">Register</a>
+      </div>
     </div>
   </header>
 
