@@ -54,7 +54,7 @@
 
     .nav > ul {
       display: flex;
-      width: 24rem;
+      gap: 2rem;
       justify-content: space-between;
       padding-top: .2rem;
     }
@@ -286,6 +286,15 @@
         justify-content: flex-start;
         background-color: #fff;
         padding: 5rem 2rem;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all .5s ease;
+      }
+
+      .ham-menu-opened{
+        opacity: 1;
+        visibility: visible;
       }
 
       .ham-menu-btn {
@@ -296,7 +305,7 @@
       }
 
       .ham-menu-icon {
-        display: none;
+        display: block;
         max-width: 100%;
         height: 100%;
       }
@@ -305,7 +314,7 @@
         display: block;
         position: absolute;
         top: 1.4rem;
-        right: 2rem;
+        right: 1rem;
         border: none;
         background-color: #fff;
         height: 1.5rem;
@@ -313,7 +322,7 @@
 
       .nav {
         display: flex;
-        height: 10rem;
+        min-height: 10rem;
         justify-content: space-between;
         margin-bottom: 3rem;
       }
@@ -351,6 +360,15 @@
       .register {
         width: 100%;
         text-align: center;
+      }
+
+      .features-items, .company-items {
+        position: static;
+        box-shadow: none;
+      }
+
+      .features-items {
+        padding: 0 1rem;
       }
 
       #features {
@@ -417,9 +435,9 @@
     <a href="#" class="company-link">
       <img src="images/logo.svg" alt="Company Logo" class="company-logo">
     </a>
-    <button class="ham-menu-btn"><img src="images/icon-menu.svg" alt="menu icon" class="ham-menu-icon"></button>
-    <div class="ham-menu">
-      <button class="close-ham-menu-btn"><img src="images/icon-close-menu.svg" alt="icon to close ham menu"></button>
+    <button id="open-ham-menu" class="ham-menu-btn"><img src="images/icon-menu.svg" alt="menu icon" class="ham-menu-icon"></button>
+    <div id="ham-menu" class="ham-menu">
+      <button id="close-ham-menu" class="close-ham-menu-btn"><img src="images/icon-close-menu.svg" alt="icon to close ham menu"></button>
       <nav class="nav">
         <ul>
           <li id="features" class="nav-items"><a href="#">Features <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
@@ -472,6 +490,7 @@
   </div> -->
 
   <script>
+    /* Collapse the nav items */
     const features = document.getElementById("features");
     const featuresItems = document.querySelector(".features-items");
     const company = document.getElementById("company");
@@ -484,6 +503,19 @@
     company.addEventListener("click", ()=>{
       companyItems.classList.toggle("open-company-menu");
     })
+
+    /* Open and close ham menu */
+    const hamMenu = document.getElementById('ham-menu');
+    const openHamMenu = document.getElementById('open-ham-menu');
+    const closeHamMenu = document.getElementById('close-ham-menu');
+
+    openHamMenu.addEventListener('click', ()=>{
+      hamMenu.classList.add('ham-menu-opened')
+    });
+
+    closeHamMenu.addEventListener('click', ()=>{
+      hamMenu.classList.remove('ham-menu-opened')
+    });
   </script>
 </body>
 </html>
