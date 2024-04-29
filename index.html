@@ -88,8 +88,14 @@
       position: relative;
     }
 
-    .arrow-down {
-      rotate: 50%;
+    .arrow {
+      height: .5rem;
+      margin-left: .3rem;
+      transition: transform .5s;
+    }
+    
+    .arrow-rotation {
+      transform: rotate(180deg);
     }
 
     .login {
@@ -182,7 +188,7 @@
     .company-items > li > a:hover {
       color: #000;
     } 
-
+    
     .open-company-menu {
       height: 8rem;
     }
@@ -340,11 +346,6 @@
         font-size: 1.2rem;
       }
 
-      .arrow-down {
-        height: .5rem;
-        margin-left: .3rem;
-      }
-
       .login-register {
         width: 100%;
         height: 6rem;
@@ -440,7 +441,7 @@
       <button id="close-ham-menu" class="close-ham-menu-btn"><img src="images/icon-close-menu.svg" alt="icon to close ham menu"></button>
       <nav class="nav">
         <ul>
-          <li id="features" class="nav-items"><a href="#">Features <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
+          <li id="features" class="nav-items"><a href="#">Features <img id="features-arrow" class="arrow" src="images/icon-arrow-down.svg" alt="arrow down"></a>
             <ul class="features-items invisible">
               <li><a href="#"><img src="images/icon-todo.svg" alt="todo icon">Todo List</a></li>
               <li><a href="#"><img src="images/icon-calendar.svg" alt="calendar icon">Calendar</a></li>
@@ -448,7 +449,7 @@
               <li><a href="#"><img src="images/icon-planning.svg" alt="planing icon">Planing</a></li>
             </ul>
           </li>
-          <li id="company" class="nav-items"><a href="#">Company <img class="arrow-down" src="images/icon-arrow-down.svg" alt="arrow down"></a>
+          <li id="company" class="nav-items"><a href="#">Company <img id="company-arrow" class="arrow" src="images/icon-arrow-down.svg" alt="arrow down"></a>
             <ul class="company-items">
               <li><a href="#">History</a></li>
               <li><a href="#">Our Team</a></li>
@@ -495,13 +496,17 @@
     const featuresItems = document.querySelector(".features-items");
     const company = document.getElementById("company");
     const companyItems = document.querySelector(".company-items")
+    const featuresArrow = document.getElementById("features-arrow");
+    const companyArrow = document.getElementById("company-arrow");
 
     features.addEventListener("click", ()=>{
       featuresItems.classList.toggle("open-features-menu");
+      featuresArrow.classList.toggle("arrow-rotation");
     })
 
     company.addEventListener("click", ()=>{
       companyItems.classList.toggle("open-company-menu");
+      companyArrow.classList.toggle("arrow-rotation");
     })
 
     /* Open and close ham menu */
